@@ -1,15 +1,19 @@
 <?php
-error_reporting(0);
 
-    //Getting database credentials
+    // Getting database credentials
     $db_name = 'movies_api';
-    $mysql_username = 'root';
-    $mysql_pass = '';
-    $server_name = '127.0.0.1';
+    $db_username = 'root';
+    $db_pass = '';
+    $db_server = 'localhost';
 
-    $con = mysqli_connect($server_name,$mysql_username,$mysql_pass,$db_name);
+    // Connect to the database
+    $con = mysqli_connect($db_server,$db_username,$db_pass,$db_name);
 
-    !$con ? print_r('no such thing') : print_r('success');
+    // 1- Get
+    // 2- Insert
+    // 3- Update
+    // 4- Delete
 
+    
 
 ?>
