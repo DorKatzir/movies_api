@@ -25,10 +25,17 @@
         $response['movies'] = $movies;
         $response['message'] = 'Movies return successfully';
 
+        $stmt->close();
+
     }else{
         // error
+        $response['error'] = true;
+        $response['message'] = 'Could not execute query';
     }
 
-    print_r($response);
+    // Display results
+    // print_r($response);
+
+    echo json_encode($response);
 
 ?>
