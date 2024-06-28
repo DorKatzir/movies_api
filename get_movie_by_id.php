@@ -12,11 +12,22 @@ if (isset($_GET['id'])) {
 
     $stmt = $con->prepare("SELECT id, title, lang, genre, release_date, box_office, run_time, stars 
                         FROM movies WHERE id = ? ");
-    $stmt->bind_param("i", $id);
+
+    $stmt->bind_param("i", $id );
+
     if ($stmt->execute()) {
+
         // success
         $stmt->bind_result($id, $title, $lang, $genre, $release_date, $box_office, $run_time, $stars);
+
         $stmt->fetch();
+
+        if($title === null) {
+            $response['error'] = true;
+            $response['message'] = 'no data';
+            echo json_encode($response);
+            return;
+        }
 
         $movie = [
             'id' => $id,
@@ -32,6 +43,7 @@ if (isset($_GET['id'])) {
         $response['error'] = false;
         $response['movie'] = $movie;
         $response['message'] = 'movie return successfully';
+
     } else {
         // fail
         $response['error'] = true;
@@ -41,7 +53,7 @@ if (isset($_GET['id'])) {
 
     // no movie was provided, we cannot get the movie.
     $response['error'] = true;
-    $response['message'] = 'Please provide a movie title';
+    $response['message'] = 'Please provide a movie id';
 }
 
 echo json_encode($response);
