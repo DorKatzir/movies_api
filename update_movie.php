@@ -1,5 +1,4 @@
 <?php
-
     header('Content-Type: application/json');
     require_once 'connection.php';
 
@@ -15,12 +14,13 @@
         $stars = $_POST['stars'];
         $box_office = $_POST['box_office'];
 
-        $stmt = $con->prepare("UPDATE movies SET storyline='$storyline', stars='$stars', box_office='$box_office' 
-                                WHERE id='$id ");
-                if( $stmp->execute() ){
+        $stmt = $con->prepare("UPDATE movies SET storyline='$storyline', stars='$stars', box_office='$box_office' WHERE id='$id'");
+
+                if( $stmt->execute() ){
                     // success
                     $response['error'] = false;
                     $response['message'] = 'Movie Updated Successfully';
+
                 } else {
                     // fail
                     $response['error'] = true;
