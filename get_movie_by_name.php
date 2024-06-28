@@ -4,11 +4,12 @@
     header('Content-Type: application/json');
     require_once 'connection.php';
 
-    $response = []; 
+    $response = [];
+    
 
     if( isset($_GET['title']) ) {
         // get the movie
-        $title = $GET['title']; // request parameter
+        $title = $_GET['title']; // request parameter
 
         $stmt = $con->prepare("SELECT id, title, lang, genre, release_date, box_office, run_time, stars 
                         FROM movies WHERE title = ? ");
