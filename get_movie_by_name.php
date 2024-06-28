@@ -19,6 +19,13 @@
             $stmt->bind_result($id, $title, $lang, $genre, $release_date, $box_office, $run_time, $stars);
             $stmt->fetch();
 
+        if ($id === null) {
+            $response['error'] = true;
+            $response['message'] = 'no data';
+            echo json_encode($response);
+            return;
+        }
+
             $movie = [
                 'id' => $id, 
                 'title' => $title, 
