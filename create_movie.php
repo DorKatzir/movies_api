@@ -20,12 +20,24 @@
         $stmt = $con->prepare("INSERT INTO movies (title, storyline, lang, genre, release_date, box_office, run_time, stars) VALUES (?,?,?,?,?,?,?,?)");
         $stmt->bind_param('sssssdsd',$title, $storyline, $lang, $genre, $release_date, $box_office, $run_time, $stars );
 
+            if( $stmt->execute() ){
+                //success
+                $response['error'] = false;
+                $response['message'] = 'Movie Created successfully';
+                
+            } else {
+                //fail
+                $response['error'] = true;
+                $response['message'] = 'Failed to create movie';
+            }
+            
+        }
+        else {
+            // no data to insert, provide movie data
+            $response['error'] = true;
+            $response['message'] = 'Please provide movie parameters: title, storyline, lang, genre, release_date, box_office, run_time, stars';
     }
-    else {
-        // no data to insert, provide movie data
-    }
 
-
-
+    echo json_encode($response);
 
 ?>
