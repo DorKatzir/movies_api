@@ -24,6 +24,7 @@
         $response['error'] = false;
         $response['movies'] = $movies;
         $response['message'] = 'Movies return successfully';
+        $response['response_code'] = 200;
 
         $stmt->close();
 
@@ -31,6 +32,7 @@
         // error
         $response['error'] = true;
         $response['message'] = 'Could not execute query';
+        $response['response_code'] = 404;
     }
 
     // Display results

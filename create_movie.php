@@ -23,19 +23,22 @@
             if( $stmt->execute() ){
                 //success
                 $response['error'] = false;
-                $response['message'] = 'Movie Created successfully';
+                $response['message'] = 'Movie Inserted';
+                $response['response_code'] = 201; // the resource created successfully
                 
             } else {
                 //fail
                 $response['error'] = true;
                 $response['message'] = 'Failed to create movie';
+                $response['response_code'] = 404;
             }
             
         }
         else {
             // no data to insert, provide movie data
             $response['error'] = true;
-            $response['message'] = 'Please provide movie parameters: title, storyline, lang, genre, release_date, box_office, run_time, stars';
+            $response['message'] = 'Please provide All Movie parameters';
+            $response['response_code'] = 404;
     }
 
     echo json_encode($response);

@@ -25,6 +25,7 @@ if (isset($_GET['id'])) {
         if($title === null) {
             $response['error'] = true;
             $response['message'] = 'no data';
+            $response['response_code'] = 404;
             echo json_encode($response);
             return;
         }
@@ -43,17 +44,20 @@ if (isset($_GET['id'])) {
         $response['error'] = false;
         $response['movie'] = $movie;
         $response['message'] = 'movie return successfully';
+        $response['response_code'] = 200;
 
     } else {
         // fail
         $response['error'] = true;
         $response['message'] = 'we could not get the movie';
+        $response['response_code'] = 404;
     }
 } else {
 
     // no movie was provided, we cannot get the movie.
     $response['error'] = true;
     $response['message'] = 'Please provide a movie id';
+    $response['response_code'] = 404;
 }
 
 echo json_encode($response);
